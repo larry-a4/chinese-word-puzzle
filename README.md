@@ -1,36 +1,107 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 中文词汇测验 (Chinese Vocabulary Quiz)
 
-## Getting Started
+这是一个基于Next.js开发的中文词汇测验应用，帮助用户学习和记忆中文词汇。
 
-First, run the development server:
+## 功能特点
 
+- 20个难度递增的关卡
+- 每关10个问题
+- 根据关卡自动调整词汇难度
+- 计时系统（每关60秒）
+- 星级评分系统（1-3星）
+- 防止词汇重复出现
+- 支持拼音显示
+- 响应式设计
+
+## 技术栈
+
+- Next.js 15.2.4
+- React 19
+- TypeScript
+- Tailwind CSS
+
+## 运行步骤
+
+1. 克隆项目
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+git clone [项目地址]
+cd chinesepuzzle
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. 安装依赖
+```bash
+npm install
+# 或
+yarn install
+# 或
+pnpm install
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. 启动开发服务器
+```bash
+npm run dev
+# 或
+yarn dev
+# 或
+pnpm dev
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+4. 在浏览器中访问
+打开 [http://localhost:3000](http://localhost:3000) 查看应用
 
-## Learn More
+## 游戏规则
 
-To learn more about Next.js, take a look at the following resources:
+1. 每关包含10个问题
+2. 每个问题有4-6个选项（随关卡提升而增加）
+3. 每关时间限制为60秒
+4. 正确率要求：
+   - ≥90%：3星
+   - ≥70%：2星
+   - ≥60%：1星
+   - <60%：需要重试
+5. 如果用时超过限制的80%，星级会降低一级
+6. 每关词汇不会重复出现
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 难度系统
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- 关卡1-4：基础词汇（HSK1-2水平）
+- 关卡5-8：常用词汇（HSK2-3水平）
+- 关卡9-12：进阶词汇（HSK3-4水平）
+- 关卡13-16：中高级词汇（HSK4-5水平）
+- 关卡17-20：高级词汇（HSK5-6水平）
 
-## Deploy on Vercel
+## 项目结构
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```
+chinesepuzzle/
+├── src/
+│   ├── app/
+│   │   ├── page.tsx      # 主页面组件
+│   │   ├── layout.tsx    # 布局组件
+│   │   └── globals.css   # 全局样式
+│   └── data/
+│       └── words.ts      # 词汇数据
+├── public/               # 静态资源
+└── package.json         # 项目配置
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 开发说明
+
+- 使用 `npm run dev` 启动开发服务器
+- 使用 `npm run build` 构建生产版本
+- 使用 `npm run start` 启动生产服务器
+- 使用 `npm run lint` 运行代码检查
+
+## 注意事项
+
+1. 确保Node.js版本兼容（建议使用最新的LTS版本）
+2. 如果遇到模块导入错误，检查 `tsconfig.json` 中的路径配置
+3. 确保所有依赖都正确安装
+
+## 贡献指南
+
+欢迎提交Issue和Pull Request来帮助改进这个项目。
+
+## 许可证
+
+MIT License
