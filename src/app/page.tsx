@@ -6,14 +6,14 @@ import { words, Word } from '@/data/words';
 export default function Home() {
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [score, setScore] = useState(0);
-  const [options, setOptions] = useState<string[]>([]);
+  const [options, setOptions] = useState<Word[]>([]);
   const [showScore, setShowScore] = useState(false);
   const [currentWord, setCurrentWord] = useState<Word | null>(null);
 
   const generateOptions = (correctWord: Word) => {
-    const otherWords = words.filter(word => word.english !== correctWord.english);
+    const otherWords = words.filter(word => word.chinese !== correctWord.chinese);
     const randomWords = otherWords.sort(() => 0.5 - Math.random()).slice(0, 3);
-    const allOptions = [...randomWords.map(word => word.english), correctWord.english];
+    const allOptions = [...randomWords, correctWord];
     return allOptions.sort(() => 0.5 - Math.random());
   };
 
@@ -27,8 +27,8 @@ export default function Home() {
     startNewQuestion();
   }, []);
 
-  const handleAnswer = (selectedAnswer: string) => {
-    if (selectedAnswer === currentWord?.english) {
+  const handleAnswer = (selectedWord: Word) => {
+    if (selectedWord.chinese === currentWord?.chinese) {
       setScore(score + 1);
     }
 
@@ -72,10 +72,10 @@ export default function Home() {
             Question {currentQuestion + 1} / 10
           </div>
           <h2 className="text-2xl font-bold mb-4">
-            What does this Chinese word mean?
+            Which Chinese word means:
           </h2>
           <div className="text-4xl font-bold text-center mb-8">
-            {currentWord?.chinese}
+            {currentWord?.english}
           </div>
         </div>
 
@@ -86,7 +86,8 @@ export default function Home() {
               onClick={() => handleAnswer(option)}
               className="w-full bg-gray-100 p-4 rounded-lg text-left hover:bg-gray-200 transition-colors"
             >
-              {option}
+              <div className="text-2xl">{option.chinese}</div>
+              <div className="text-lg text-gray-600">{option.pinyin}</div>
             </button>
           ))}
         </div>
